@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+
+    padding-bottom: var(--space-lg);
+    margin: var(--space-lg);
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--gray-400);
+}
+
+.header__title {
+    font-weight: 500;
+}
+
+.header__timeInfo {
+    opacity: var(--opacity-md);
+}
