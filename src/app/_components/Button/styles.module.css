@@ -1,0 +1,23 @@
+.button {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: var(--gray-300);
+
+    text-align: center;
+    font-size: 1rem;
+}
+
+.button--primary {
+    font-weight: 500;
+    color: var(--white);
+    background: linear-gradient(90deg, var(--blue-500) 0%, var(--blue-300) 80%);
+}
+
+.button-danger {
+    font-weight: 500;
+    color: var(--white);
+    background: linear-gradient(90deg, var(--red-500) 0%, var(--red-300) 80%);
+}
