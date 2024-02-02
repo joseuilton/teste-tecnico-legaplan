@@ -131,6 +131,7 @@ table {
 }
 
 input, textarea, button {
+    font-family: inherit;
     outline: none;
 }
 

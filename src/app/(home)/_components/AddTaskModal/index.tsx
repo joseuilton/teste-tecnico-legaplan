@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/_components/Button";
 
-import styles from "./page.module.css"
+import styles from "./styles.module.css"
 
 const AddTaskModal = () => {
     return (

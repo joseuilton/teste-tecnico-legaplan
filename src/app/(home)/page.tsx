@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { Button } from "../_components/Button";
 import { TaskItem } from "./_components/TaskItem";
 import { AddTaskModal } from "./_components/AddTaskModal";
+import { DeleteTaskModal } from "./_components/DeleteTaskModal";
 
 interface HomeProps {
   searchParams: Record<string, string> | null | undefined;
@@ -48,6 +49,7 @@ export default function Home({ searchParams }: HomeProps) {
       </Button>
 
       { show === "add" && <AddTaskModal /> }
+      { show === "delete" && <DeleteTaskModal /> }
     </main>
   );
 }

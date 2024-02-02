@@ -1,5 +1,8 @@
+"use client";
+
 import FeatherIcon from "feather-icons-react"
 import styles from "./styles.module.css"
+import { useRouter } from "next/navigation";
 
 interface TaskItemProps {
     task: {
@@ -10,6 +13,12 @@ interface TaskItemProps {
 }
 
 const TaskItem = ({ task }: TaskItemProps) => {
+    const router = useRouter();
+
+    function handleDeleteTask() {
+        router.push("/?show=delete");
+    }
+
     return (
         <div className={styles.taskItem}>
             <input
@@ -31,7 +40,11 @@ const TaskItem = ({ task }: TaskItemProps) => {
                 Lavar as mãos
             </p>
 
-            <button type="button" className={styles.taskItem__button}>
+            <button
+                type="button"
+                className={styles.taskItem__button}
+                onClick={handleDeleteTask}
+            >
                 <FeatherIcon size={24} icon="trash" />
             </button>
         </div>
