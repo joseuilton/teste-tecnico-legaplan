@@ -3,9 +3,14 @@ import { v4 as uuidV4 } from "uuid";
 import styles from "./page.module.css";
 import { Button } from "../_components/Button";
 import { TaskItem } from "./_components/TaskItem";
+import { AddTaskModal } from "./_components/AddTaskModal";
 
+interface HomeProps {
+  searchParams: Record<string, string> | null | undefined;
+}
 
-export default function Home() {
+export default function Home({ searchParams }: HomeProps) {
+  const show = searchParams?.show;
 
   const fakeTask1 = {
     id: uuidV4(),
@@ -41,6 +46,8 @@ export default function Home() {
       >
         Adicionar nova tarefa
       </Button>
+
+      { show === "add" && <AddTaskModal /> }
     </main>
   );
 }

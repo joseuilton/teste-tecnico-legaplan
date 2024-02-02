@@ -130,6 +130,10 @@ table {
     border-spacing: 0;
 }
 
+input, textarea, button {
+    outline: none;
+}
+
 /* Variables */
 :root {
     --gray-900: #000000;
@@ -155,6 +159,7 @@ table {
     --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 1.5rem;
+    --space-xl: 2rem;
 
     --opacity-md: 54%;
 }
