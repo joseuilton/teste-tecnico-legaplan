@@ -23,3 +23,21 @@
     flex-direction: column;
     gap: var(--space-sm);
 }
+
+@media (min-width: 769px) {
+    .container {
+        max-width: 450px;
+        padding: 0;
+        padding-top: var(--space-xxl);
+        margin: 0 auto;
+    }
+
+    .taskList {
+        padding: var(--space-xl);
+    }
+
+    .taskList__container {
+        width: fill;
+        gap: var(--space-lg);
+    }
+}

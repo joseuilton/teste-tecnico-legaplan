@@ -35,7 +35,9 @@ const TaskItem = ({ task }: TaskItemProps) => {
             </label>
 
             <p
-                className={task.completed ? styles.taskItem__textCompleted : ""}
+                className={
+                    `${styles.taskItem__text} ${task.completed && styles.taskItem__textCompleted}`
+                }
             >
                 Lavar as mãos
             </p>
