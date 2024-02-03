@@ -25,6 +25,7 @@ export default function Home({ searchParams }: HomeProps) {
   const router = useRouter();
 
   const [tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem("tasks") || "[]"))
+  const [deletedTask, setDeletedTask] = useState<string>("");
 
   function handleAddNewTask(name: string) {
     const task = {
@@ -34,6 +35,20 @@ export default function Home({ searchParams }: HomeProps) {
     }
 
     setTasks([...tasks, task]);
+  }
+
+  function handleDeleteTask() {
+    if (deletedTask === "") {
+      return;
+    }
+
+    const index = tasks.findIndex((t) => t.id === deletedTask)
+    setTasks(tasks.toSpliced(index, 1));
+    setDeletedTask("");
+  }
+
+  function handleSetDeletedTask(id: string) {
+    setDeletedTask(id);
   }
 
   function handleAddNewTaskClick() {
@@ -52,7 +67,11 @@ export default function Home({ searchParams }: HomeProps) {
             tasks
               .filter((task) => !task.completed)
               .map((task) => (
-                <TaskItem task={task} key={task.id} />
+                <TaskItem
+                  task={task}
+                  key={task.id}
+                  onRequestSetDeletedTask={handleSetDeletedTask}
+                />
               ))
             }
         </div>
@@ -70,7 +89,7 @@ export default function Home({ searchParams }: HomeProps) {
       </Button>
 
       { show === "add" && <AddTaskModal onRequestAddNewTask={handleAddNewTask} /> }
-      { show === "delete" && <DeleteTaskModal /> }
+      { show === "delete" && <DeleteTaskModal onRequestDeleteTask={handleDeleteTask} /> }
     </main>
   );
 }

@@ -5,11 +5,20 @@ import { Button } from "@/app/_components/Button";
 import styles from "./styles.module.css"
 import { useRouter } from "next/navigation";
 
-const DeleteTaskModal = () => {
+interface DeleteTaskModalProps {
+    onRequestDeleteTask: () => void;
+}
+
+const DeleteTaskModal = ({ onRequestDeleteTask }: DeleteTaskModalProps) => {
     const router = useRouter();
 
     function handleCancel() {
         router.replace("/")
+    }
+
+    function handleDelete() {
+        onRequestDeleteTask();
+        router.replace("/");
     }
 
     return (
@@ -19,7 +28,7 @@ const DeleteTaskModal = () => {
                 <p className={styles.modal__text}>Tem certeza que você deseja deletar essa tarefa?</p>
 
                 <div className={styles.modal__buttonsContainer}>
-                    <Button variation="danger">Deletar</Button>
+                    <Button onClick={handleDelete} variation="danger">Deletar</Button>
                     <Button onClick={handleCancel}>Cancelar</Button>
                 </div>
             </div>

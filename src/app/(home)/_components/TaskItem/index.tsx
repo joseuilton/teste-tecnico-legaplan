@@ -9,13 +9,15 @@ interface TaskItemProps {
         id: string;
         name: string;
         completed: boolean;
-    }
+    };
+    onRequestSetDeletedTask: (id: string) => void
 }
 
-const TaskItem = ({ task }: TaskItemProps) => {
+const TaskItem = ({ task, onRequestSetDeletedTask }: TaskItemProps) => {
     const router = useRouter();
 
     function handleDeleteTask() {
+        onRequestSetDeletedTask(task.id);
         router.replace("/?show=delete");
     }
 
@@ -50,7 +52,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
                 <FeatherIcon size={24} icon="trash" />
             </button>
         </div>
-    )
+    );
 }
 
 export { TaskItem }

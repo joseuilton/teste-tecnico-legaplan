@@ -4,7 +4,7 @@ import { Button } from "@/app/_components/Button";
 
 import styles from "./styles.module.css"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEventHandler, ReactEventHandler, useState } from "react";
 
 interface AddTaskModalProps {
     onRequestAddNewTask: (name: string) => void; 
@@ -19,7 +19,8 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
         return;
     };
 
-    function handleCreate() {
+    function handleCreate(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
         onRequestAddNewTask(nameValue);
         router.replace("/");
         return;
@@ -30,7 +31,7 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
             <div className={styles.modal}>
                 <h1 className={styles.modal__title}>Nova tarefa</h1>
 
-                <form className={styles.modal__form}>
+                <form className={styles.modal__form} onSubmit={handleCreate}>
                     <div className={styles.modal__field}>
                         <label
                             className={styles.field__label}
@@ -50,7 +51,7 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
                     </div>
 
                     <div className={styles.modal__buttonsContainer}>
-                        <Button variation="primary" onClick={handleCreate}>
+                        <Button type="submit" variation="primary">
                             Adicionar
                         </Button>
 
