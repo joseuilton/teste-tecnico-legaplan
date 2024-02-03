@@ -27,7 +27,7 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={handleCancel}>
             <div className={styles.modal}>
                 <h1 className={styles.modal__title}>Nova tarefa</h1>
 
