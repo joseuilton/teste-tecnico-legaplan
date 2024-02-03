@@ -39,7 +39,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
                     `${styles.taskItem__text} ${task.completed && styles.taskItem__textCompleted}`
                 }
             >
-                Lavar as mãos
+                {task.name}
             </p>
 
             <button

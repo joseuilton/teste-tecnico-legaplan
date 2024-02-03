@@ -4,14 +4,26 @@ import { Button } from "@/app/_components/Button";
 
 import styles from "./styles.module.css"
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const AddTaskModal = () => {
+interface AddTaskModalProps {
+    onRequestAddNewTask: (name: string) => void; 
+}
+
+const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
     const router = useRouter();
+    const [nameValue, setNameValue] = useState("");
 
     function handleCancel() {
         router.replace("/");
         return;
     };
+
+    function handleCreate() {
+        onRequestAddNewTask(nameValue);
+        router.replace("/");
+        return;
+    }
 
     return (
         <div className={styles.container}>
@@ -32,11 +44,13 @@ const AddTaskModal = () => {
                             name="title"
                             id="title"
                             placeholder="Digite"
+                            value={nameValue}
+                            onChange={(e) => setNameValue(e.target.value)}
                         />
                     </div>
 
                     <div className={styles.modal__buttonsContainer}>
-                        <Button variation="primary" >
+                        <Button variation="primary" onClick={handleCreate}>
                             Adicionar
                         </Button>
 

@@ -8,30 +8,39 @@ import { TaskItem } from "./_components/TaskItem";
 import { AddTaskModal } from "./_components/AddTaskModal";
 import { DeleteTaskModal } from "./_components/DeleteTaskModal";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface HomeProps {
   searchParams: Record<string, string> | null | undefined;
+}
+
+interface Task {
+  id: string;
+  name: string;
+  completed: boolean;
 }
 
 export default function Home({ searchParams }: HomeProps) {
   const show = searchParams?.show;
   const router = useRouter();
 
-  const fakeTask1 = {
-    id: uuidV4(),
-    name: "teste",
-    completed: false,
-  };
+  const [tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem("tasks") || "[]"))
 
-  const fakeTask2 = {
-    id: uuidV4(),
-    name: "Tarefa completada",
-    completed: true
-  };
+  function handleAddNewTask(name: string) {
+    const task = {
+      id: uuidV4(),
+      name,
+      completed: false
+    }
+
+    setTasks([...tasks, task]);
+  }
 
   function handleAddNewTaskClick() {
     router.replace("/?show=add");
   }
+
+  console.log(tasks);
 
   return (
     <main className={styles.container}>
@@ -39,12 +48,17 @@ export default function Home({ searchParams }: HomeProps) {
         <h2 className={styles.taskList__title}>Suas tarefas de hoje</h2>
 
         <div className={styles.taskList__container}>
-          <TaskItem task={fakeTask1} />
+          {
+            tasks
+              .filter((task) => !task.completed)
+              .map((task) => (
+                <TaskItem task={task} key={task.id} />
+              ))
+            }
         </div>
 
         <h2 className={styles.taskList__title}>Tarefas finalizadas</h2>
         <div className={styles.taskList__container}>
-          <TaskItem task={fakeTask2} />
         </div>
       </div>
 
@@ -55,7 +69,7 @@ export default function Home({ searchParams }: HomeProps) {
         Adicionar nova tarefa
       </Button>
 
-      { show === "add" && <AddTaskModal /> }
+      { show === "add" && <AddTaskModal onRequestAddNewTask={handleAddNewTask} /> }
       { show === "delete" && <DeleteTaskModal /> }
     </main>
   );
