@@ -16,3 +16,31 @@
 .header__timeInfo {
     opacity: var(--opacity-md);
 }
+
+.header__timeInfo::first-letter {
+    text-transform: uppercase;
+}
+
+@media (min-width: 769px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    .header__title {
+        font-size: var(--font-lg);
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1328px) {
+    .header {
+        max-width: 1260px;
+        margin: var(--space-lg) auto;
+        margin-bottom: 0;
+    }
+}
