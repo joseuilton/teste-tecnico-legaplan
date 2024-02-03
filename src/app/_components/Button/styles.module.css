@@ -1,5 +1,6 @@
 .button {
     display: block;
+    width: fill;
     padding: var(--space-md) var(--space-lg);
     border: none;
     border-radius: 0.5rem;

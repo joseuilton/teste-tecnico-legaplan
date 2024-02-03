@@ -1,15 +1,12 @@
-import { ReactNode } from "react";
 import styles from "./styles.module.css"
-import Link from "next/link";
 
-interface ButtonProps {
-    children: ReactNode;
-    type?: "button" | "link";
+interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     variation?: "primary" | "danger" | "default";
-    href?: string;
 }
 
-const Button = ({children, variation = "default", type = "button", href}: ButtonProps) => {
+const Button:React.FC<ButtonProps> = props => {
+
+    const { variation = "default", children, ...rest } = props;
 
     const variationToSelectorMap = {
         "primary": styles["button--primary"],
@@ -17,20 +14,14 @@ const Button = ({children, variation = "default", type = "button", href}: Button
         "default": ""
     }
 
-    return type === "button" ? (
+    return (
         <button
             type="button"
             className={`${styles.button} ${variationToSelectorMap[variation]}`}
+            {...rest}
         >
             {children}
         </button>
-    ) : (
-        <Link
-            href={href!}
-            className={`${styles.button} ${variationToSelectorMap[variation]}`}
-        >
-            {children}
-        </Link>
     )
 }
 

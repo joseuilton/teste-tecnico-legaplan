@@ -1,3 +1,5 @@
+"use client";
+
 import { v4 as uuidV4 } from "uuid";
 
 import styles from "./page.module.css";
@@ -5,6 +7,7 @@ import { Button } from "../_components/Button";
 import { TaskItem } from "./_components/TaskItem";
 import { AddTaskModal } from "./_components/AddTaskModal";
 import { DeleteTaskModal } from "./_components/DeleteTaskModal";
+import { useRouter } from "next/navigation";
 
 interface HomeProps {
   searchParams: Record<string, string> | null | undefined;
@@ -12,6 +15,7 @@ interface HomeProps {
 
 export default function Home({ searchParams }: HomeProps) {
   const show = searchParams?.show;
+  const router = useRouter();
 
   const fakeTask1 = {
     id: uuidV4(),
@@ -24,6 +28,10 @@ export default function Home({ searchParams }: HomeProps) {
     name: "Tarefa completada",
     completed: true
   };
+
+  function handleAddNewTaskClick() {
+    router.replace("/?show=add");
+  }
 
   return (
     <main className={styles.container}>
@@ -41,9 +49,8 @@ export default function Home({ searchParams }: HomeProps) {
       </div>
 
       <Button
-        type="link"
-        href="/?show=add"
         variation="primary"
+        onClick={handleAddNewTaskClick}
       >
         Adicionar nova tarefa
       </Button>

@@ -3,8 +3,16 @@
 import { Button } from "@/app/_components/Button";
 
 import styles from "./styles.module.css"
+import { useRouter } from "next/navigation";
 
 const AddTaskModal = () => {
+    const router = useRouter();
+
+    function handleCancel() {
+        router.replace("/");
+        return;
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.modal}>
@@ -32,7 +40,7 @@ const AddTaskModal = () => {
                             Adicionar
                         </Button>
 
-                        <Button>
+                        <Button onClick={handleCancel}>
                             Cancelar
                         </Button>
                     </div>
