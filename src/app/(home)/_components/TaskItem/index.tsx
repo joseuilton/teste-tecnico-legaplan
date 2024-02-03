@@ -16,7 +16,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
     const router = useRouter();
 
     function handleDeleteTask() {
-        router.push("/?show=delete");
+        router.replace("/?show=delete");
     }
 
     return (

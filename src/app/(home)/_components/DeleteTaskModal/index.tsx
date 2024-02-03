@@ -3,8 +3,15 @@
 import { Button } from "@/app/_components/Button";
 
 import styles from "./styles.module.css"
+import { useRouter } from "next/navigation";
 
 const DeleteTaskModal = () => {
+    const router = useRouter();
+
+    function handleCancel() {
+        router.replace("/")
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.modal}>
@@ -13,7 +20,7 @@ const DeleteTaskModal = () => {
 
                 <div className={styles.modal__buttonsContainer}>
                     <Button variation="danger">Deletar</Button>
-                    <Button>Cancelar</Button>
+                    <Button onClick={handleCancel}>Cancelar</Button>
                 </div>
             </div>
         </div>
