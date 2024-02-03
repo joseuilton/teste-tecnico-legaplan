@@ -22,7 +22,8 @@ const DeleteTaskModal = ({ onRequestDeleteTask }: DeleteTaskModalProps) => {
     }
 
     return (
-        <div className={styles.container} onClick={handleCancel}>
+        <div className={styles.container}>
+            <div className={styles.container__overlay} onClick={handleCancel}></div>
             <div className={styles.modal}>
                 <h1 className={styles.modal__title}>Deletar tarefa</h1>
                 <p className={styles.modal__text}>Tem certeza que você deseja deletar essa tarefa?</p>

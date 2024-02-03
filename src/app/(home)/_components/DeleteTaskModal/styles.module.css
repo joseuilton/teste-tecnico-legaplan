@@ -35,6 +35,15 @@
         align-items: center;
         justify-content: center;
 
+        background-color: transparent;
+    }
+
+    .container__overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+
         background-color: rgba(255, 255, 255, 0.80);
         backdrop-filter: blur(2px);
     }
@@ -42,6 +51,8 @@
     .modal {
         max-width: 450px;
         min-width: 450px;
+        z-index: 100;
+
         padding: var(--space-xl);
         border-radius: 16px;
         box-shadow: 0px 24px 48px 12px rgba(16, 24, 40, 0.18);
@@ -54,6 +65,6 @@
     }
 
     .modal__buttonsContainer button {
-        width: fill;
+        width: stretch;
     }
 }

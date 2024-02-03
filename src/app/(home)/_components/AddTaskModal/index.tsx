@@ -15,6 +15,7 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
     const [nameValue, setNameValue] = useState("");
 
     function handleCancel() {
+        console.log("???????")
         router.replace("/");
         return;
     };
@@ -27,7 +28,8 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
     }
 
     return (
-        <div className={styles.container} onClick={handleCancel}>
+        <div className={styles.container}>
+            <div className={styles.container__overlay} onClick={handleCancel}></div>
             <div className={styles.modal}>
                 <h1 className={styles.modal__title}>Nova tarefa</h1>
 
