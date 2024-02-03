@@ -8,7 +8,7 @@ import { TaskItem } from "./_components/TaskItem";
 import { AddTaskModal } from "./_components/AddTaskModal";
 import { DeleteTaskModal } from "./_components/DeleteTaskModal";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface HomeProps {
   searchParams: Record<string, string> | null | undefined;
@@ -26,6 +26,10 @@ export default function Home({ searchParams }: HomeProps) {
 
   const [tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem("tasks") || "[]"))
   const [deletedTask, setDeletedTask] = useState<string>("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks])
 
   function handleAddNewTask(name: string) {
     const task = {
@@ -47,6 +51,14 @@ export default function Home({ searchParams }: HomeProps) {
     setDeletedTask("");
   }
 
+  function handleChangeTaskStatus(id: string, status: boolean) {
+    const newTasks = [...tasks];
+    const taskIndex = newTasks.findIndex(task => task.id === id);
+    newTasks[taskIndex].completed = status;
+
+    setTasks(newTasks);
+  }
+
   function handleSetDeletedTask(id: string) {
     setDeletedTask(id);
   }
@@ -55,29 +67,48 @@ export default function Home({ searchParams }: HomeProps) {
     router.replace("/?show=add");
   }
 
-  console.log(tasks);
-
   return (
     <main className={styles.container}>
       <div className={styles.taskList}>
         <h2 className={styles.taskList__title}>Suas tarefas de hoje</h2>
 
         <div className={styles.taskList__container}>
-          {
-            tasks
-              .filter((task) => !task.completed)
-              .map((task) => (
-                <TaskItem
-                  task={task}
-                  key={task.id}
-                  onRequestSetDeletedTask={handleSetDeletedTask}
-                />
-              ))
-            }
+        {
+            tasks.map((task) => {
+              if (!task.completed) {
+                return (
+                  <TaskItem
+                    key={task.id}
+                    task={task}
+                    onRequestSetDeletedTask={handleSetDeletedTask}
+                    onRequestChangeTaskStatus={handleChangeTaskStatus}
+                  />
+                )
+              }
+
+              return <></>
+            })
+          }
         </div>
 
         <h2 className={styles.taskList__title}>Tarefas finalizadas</h2>
         <div className={styles.taskList__container}>
+          {
+            tasks.map((task) => {
+              if (task.completed) {
+                return (
+                  <TaskItem
+                    key={task.id}
+                    task={task}
+                    onRequestSetDeletedTask={handleSetDeletedTask}
+                    onRequestChangeTaskStatus={handleChangeTaskStatus}
+                  />
+                )
+              }
+
+              return <></>
+            })
+          }
         </div>
       </div>
 
@@ -88,8 +119,8 @@ export default function Home({ searchParams }: HomeProps) {
         Adicionar nova tarefa
       </Button>
 
-      { show === "add" && <AddTaskModal onRequestAddNewTask={handleAddNewTask} /> }
-      { show === "delete" && <DeleteTaskModal onRequestDeleteTask={handleDeleteTask} /> }
+      {show === "add" && <AddTaskModal onRequestAddNewTask={handleAddNewTask} />}
+      {show === "delete" && <DeleteTaskModal onRequestDeleteTask={handleDeleteTask} />}
     </main>
   );
 }

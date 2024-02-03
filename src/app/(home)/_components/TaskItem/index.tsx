@@ -3,6 +3,7 @@
 import FeatherIcon from "feather-icons-react"
 import styles from "./styles.module.css"
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface TaskItemProps {
     task: {
@@ -10,15 +11,20 @@ interface TaskItemProps {
         name: string;
         completed: boolean;
     };
-    onRequestSetDeletedTask: (id: string) => void
+    onRequestSetDeletedTask: (id: string) => void;
+    onRequestChangeTaskStatus: (id: string, status: boolean) => void;
 }
 
-const TaskItem = ({ task, onRequestSetDeletedTask }: TaskItemProps) => {
+const TaskItem = ({ task, onRequestSetDeletedTask, onRequestChangeTaskStatus }: TaskItemProps) => {
     const router = useRouter();
 
     function handleDeleteTask() {
         onRequestSetDeletedTask(task.id);
         router.replace("/?show=delete");
+    }
+
+    function handleChangeTaskStatus(event: React.ChangeEvent<HTMLInputElement>) {
+        onRequestChangeTaskStatus(task.id, event.target.checked);
     }
 
     return (
@@ -27,6 +33,9 @@ const TaskItem = ({ task, onRequestSetDeletedTask }: TaskItemProps) => {
                 type="checkbox"
                 id={task.id}
                 className={styles.taskItem__checkbox__input}
+                onChange={handleChangeTaskStatus}
+                checked={task.completed}
+
             />
             <label htmlFor={task.id} className={styles.taskItem__checkbox}>
                 <FeatherIcon

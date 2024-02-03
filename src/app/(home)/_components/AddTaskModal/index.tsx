@@ -47,6 +47,7 @@ const AddTaskModal = ({ onRequestAddNewTask }: AddTaskModalProps) => {
                             placeholder="Digite"
                             value={nameValue}
                             onChange={(e) => setNameValue(e.target.value)}
+                            autoFocus
                         />
                     </div>
 
