@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Teste técnico para a empresa LegaPlan
+> Um simples aplicativo de lista de tarefas feito com Next.js |
+> Demonstração ao vivo [_aqui_](https://teste-tecnico-legaplan.vercel.app). <!-- If you have the project hosted somewhere, include the link here. -->
 
-## Getting Started
+## Table of Contents
+* [Informações gerais](#general-information)
+* [Tecnologias usadas](#technologies-used)
+* [Funcionalidades](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Status do projeto](#project-status)
+* [Possíveis adições](#room-for-improvement)
+* [Reconhecimentos](#acknowledgements)
+* [Contato](#contact)
+<!-- * [License](#license) -->
 
-First, run the development server:
 
+## Informações gerais
+Esse projeto foi desenvolvido como parte do processo de seleção para a vaga de desenvolvedor Front-End Jr. ofertada pela empresa LegaPlan
+
+A aplicação é um simples sistema de lista de tarefas, apenas com o propósito de testar o domínio do entrevistado nas tecnologias requisitadas pela empresa
+
+## Tecnologias usadas
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+## Features
+- Listagem de tarefas a fazer e concluidas
+- Adição de novas tarefas
+- Exclusão de tarefas adicionadas
+- Concluir tarefas
+
+
+## Screenshots
+![Desktop Version](./readme-images/screenshot-home-desktop.png)
+![Mobile Version](./readme-images/screenshot-home-mobile.png)
+
+## Setup
+esse projeto depende apenas do Node.js instalado em sua máquina, recomendável estar na versão estável mais recente, para conseguir instalá-lo em sua máquina clique [aqui](https://nodejs.org/en/download)
+
+Para rodar o projeto basta executar os seguintes comandos:
 ```bash
+git clone git@github.com:joseuilton/teste-tecnico-legaplan.git
+cd teste-tecnico-legaplan
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Status do projeto
+O projeto está concluido, com todas as funcionalidades já implementadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Possíveis adições
+Como o projeto é apenas um teste técnico, o foco foi em construir fielmente a aplicação apresentada, algumas possiveis adições que eu adicionaria fácilmente nesse projeto seria:
+ 
+- Implementação de animações
+- Sistema de login com opção para login social
+- Construção de um Back-End para a aplicação
+- Tema Light/Dark
+- Análise de métricas
+- Sistema de gamificação
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Acknowledgements
+Todo o design e ideia da aplicação foi fornecido pela equipe de recrutamento da empresa LegaPlan
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+Criado com :heart: por [@joseuilton](https://www.linkedin.com/in/joseuilton/) - Sinta livre para entrar em contato!
